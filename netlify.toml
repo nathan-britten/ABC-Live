@@ -4,19 +4,13 @@
   # Set the default header to the one we want for documents
   for = "/*"
     [headers.values]
-    cache-control = "public,max-age=60"
-    Referrer-Policy = "no-referrer-when-downgrade"
-    X-Frame-Options = "SAMEORIGIN"
-    X-Content-Type-Options = "nosniff"
-    Feature-Policy = "camera 'none'; geolocation 'none'; microphone 'none'"
-
+    cache-control = "public,max-age=1800"
 
 
 [[headers]]
-  # Override cache duration for assets with periods in the filename (i.e. static assets)
-  for = "/*.*"
-    [headers.values]
-    cache-control = "public,max-age=360000"
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=1800 "
 
 
 [[redirects]]

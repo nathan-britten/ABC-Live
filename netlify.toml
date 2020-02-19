@@ -1,16 +1,11 @@
 # netlify.toml
 
-[[headers]]
-  # Set the default header to the one we want for documents
-  for = "/*"
-    [headers.values]
-    cache-control = "public,max-age=1800"
 
 
 [[headers]]
   for = "*.jpg"
   [headers.values]
-    Cache-Control = "public, max-age=1800 "
+    Cache-Control = "public, max-age=360000 "
 
 
 [[redirects]]

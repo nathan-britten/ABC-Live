@@ -30,3 +30,28 @@
   for = "/*.*"
     [headers.values]
     cache-control = "public,max-age=360000"
+
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+
+  [[redirects]]
+  from = "/portfolio.html"
+  to = "/portfolio"
+
+
+  [[redirects]]
+  from = "/airlie-beach-builders-logans-payground/"
+  to = "/"
+
+  [[redirects]]
+  from = "/funnel-bay-lot-1-luxury-development/"
+  to = "/"
+
+  [[redirects]]
+  from = "/latest-news/"
+  to = "/"
+
+
+

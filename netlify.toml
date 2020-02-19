@@ -2,12 +2,6 @@
 
 
 
-[[headers]]
-  for = "*.jpg"
-  [headers.values]
-    Cache-Control = "public, max-age=360000 "
-
-
 [[redirects]]
   from = "/index.html"
   to = "/"

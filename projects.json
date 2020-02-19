@@ -1,0 +1,25 @@
+[
+  {
+    "title": "Lot 1 - Funnel Bay",
+    "images": ["images/lot-one-funnel-bay/Balcony1.jpg","images/lot-one-funnel-bay/DeckView2.jpg","images/lot-one-funnel-bay/House5.jpg","images/lot-one-funnel-bay/PoolTwighlight1.jpg","images/lot-one-funnel-bay/Bathroom-.jpg","images/lot-one-funnel-bay/Gardens1.jpg","images/lot-one-funnel-bay/Pool1.jpg","images/lot-one-funnel-bay/Bathroom3.jpg","images/lot-one-funnel-bay/House1.jpg","images/lot-one-funnel-bay/Pool3.jpg",  "images/lot-one-funnel-bay/SunsetReflections1.jpg",
+"images/lot-one-funnel-bay/BeachView1.jpg",	"images/lot-one-funnel-bay/House2.jpg","images/lot-one-funnel-bay/Pool4.jpg",      "images/lot-one-funnel-bay/Twlight1.jpg",
+"images/lot-one-funnel-bay/DeckView1.jpg","images/lot-one-funnel-bay/PoolPano1.jpg"],
+    "buttonlink": "#",
+    "id": 0
+  }, {
+
+    "title" : "Yangaro 2",
+    "images" : [""],
+    "buttonlink": "#",
+    "id":1
+
+  }, 
+  {
+    "title" : "Yangaro 13",
+    "images" : [""],
+    "buttonlink": "#",
+    "id":1
+
+  }
+
+]

@@ -10,14 +10,25 @@
     measurementId: "G-XVLXKRJTH2"
   };
 
+  // // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
 
-  // let messagesReference = firebase.database().ref("messages");
+  
+  mFirestore = FirebaseFirestore.getInstance();
+
+  let messagesReference = firebase.database().ref("messages");
 let url = "hello"
 let myIndex = 0;
 
-  // // Initialize Firebase
-  // firebase.initializeApp(firebaseConfig);
-  // firebase.analytics();
+admin.firestore().collection('messages').add({
+  to: 'someone@example.com',
+  message: {
+    subject: 'Hello from Firebase!',
+    text: 'This is the plaintext section of the email body.',
+    html: 'This is the <code>HTML</code> section of the email body.',
+  }
+}).then(() => console.log('Queued email for delivery!'));
 
 class HTTP {
 
@@ -110,6 +121,46 @@ formValid(e){
       
       valid = false;
       console.log(valid)
+
+      if(document.querySelector(".failedmessage")){
+
+      } else {
+
+        const failedMessage = document.createElement("div");
+        failedMessage.className = "failedmessage"
+  
+        failedMessage.appendChild(document.createTextNode("Enter the correct details"));
+  
+        //get parent element 
+        const parent = document.querySelector("#contact-form");
+        const lastElement = document.querySelector("#lastone")
+  
+        const inputs = document.querySelectorAll("input")
+        const textArea = document.querySelector("textarea")
+        const validInputs = document.querySelectorAll(".validation")
+  
+       
+        parent.insertBefore(failedMessage, lastElement)
+
+        setTimeout(function(){
+        
+   
+          failedMessage.remove()
+
+  
+  
+        },2000)
+
+
+
+
+      }
+
+
+
+
+
+
       e.preventDefault();
     } else {
 
@@ -125,19 +176,32 @@ formValid(e){
   formsubmitted(e){
 
 
-    // let name = getInputVal("name");
-    // let phone = getInputVal("phone");
-    // let email = getInputVal("email");
-    // let message = getInputVal("message");
-
-
-    //save message
-    // ui.saveMessageToFireBase(name, phone, email, message);
+    e.preventDefault()
     
-      const message = document.createElement("div");
-      message.className = "submittedmessage"
+    if(document.querySelector(".is-invalid")){
 
-      message.appendChild(document.createTextNode("Email Sent"));
+
+
+    } else {
+      let to = "nathanbritten@airliebeachconstructions.com.au"
+      let name = getInputVal("name");
+      let phone = getInputVal("phone");
+      let email = getInputVal("email");
+      let content = getInputVal("message");
+
+  
+      // save message
+      ui.saveMessageToFireBase(name, phone, email, content, to);
+
+
+      const successMessage = document.createElement("div");
+      successMessage.className = "submittedmessage"
+
+
+ 
+
+
+      successMessage.appendChild(document.createTextNode("Email Sent"));
 
       //get parent element 
       const parent = document.querySelector("#contact-form");
@@ -148,7 +212,7 @@ formValid(e){
       const validInputs = document.querySelectorAll(".validation")
 
      
-      parent.insertBefore(message, lastElement)
+      parent.insertBefore(successMessage, lastElement)
 
       setTimeout(function(){
         
@@ -157,25 +221,68 @@ formValid(e){
           validInputs[i].classList.remove("is-valid")
           inputs[i].value = ""
         }
-        message.remove()
+        successMessage.remove()
         textArea.value = ""
        document.querySelector(".d").classList.remove("is-valid")
 
 
-      },3000)
+      },2000)
+
+
+
+
+
+    }
+
+
+
+      // const message = document.createElement("div");
+      // message.className = "submittedmessage"
+
+      // message.appendChild(document.createTextNode("Email Sent"));
+
+      // //get parent element 
+      // const parent = document.querySelector("#contact-form");
+      // const lastElement = document.querySelector("#lastone")
+
+      // const inputs = document.querySelectorAll("input")
+      // const textArea = document.querySelector("textarea")
+      // const validInputs = document.querySelectorAll(".validation")
+
+     
+      // parent.insertBefore(message, lastElement)
+
+      // setTimeout(function(){
+        
+      //   for(let i = 0; i < inputs.length; i++){
+
+      //     validInputs[i].classList.remove("is-valid")
+      //     inputs[i].value = ""
+      //   }
+      //   message.remove()
+      //   textArea.value = ""
+      //  document.querySelector(".d").classList.remove("is-valid")
+
+
+      // },3000)
       
 
   }
 
-  // saveMessageToFireBase(name, phone, email, message){
-  //   let newMessageRef = messagesReference.push();
-  //   newMessageRef.set({
-  //     name: name,
-  //     message: message,
-  //     email: email,
-  //     phone: phone,
-  //   });
-  // }
+  saveMessageToFireBase(name, phone, email, content, to){
+    let newMessageRef = messagesReference.push();
+    newMessageRef.set({
+      to: to,
+      message: {
+        name: name,
+        content: content,
+        email: email,
+        phone: phone
+
+      }
+ 
+    });
+  }
 
   insertFocus(){
   

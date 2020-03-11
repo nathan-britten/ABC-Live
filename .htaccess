@@ -1,0 +1,29 @@
+
+Redirect 301 "/airlie-beach-builders-logans-payground/" "https://www.airliebeachconstructions.com.au/"
+Redirect 301 "/funnel-bay-lot-1-luxury-development/" "https://www.airliebeachconstructions.com.au/"
+Redirect 301 "/latest-news/" "https://www.airliebeachconstructions.com.au/"
+
+
+
+
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+Options +FollowSymLinks -MultiViews
+# Turn mod_rewrite on
+RewriteEngine On
+RewriteBase /
+
+## hide .php extension
+# To externally redirect /dir/foo.html to /dir/foo
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
+RewriteRule ^ %1 [R,L,NC]
+
+## To internally redirect /dir/foo to /dir/foo.html
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^ %{REQUEST_URI}.html [L]
+
+ErrorDocument 404 https://www.airliebeachconstructions.com.au/

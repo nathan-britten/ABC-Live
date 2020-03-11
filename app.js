@@ -1,34 +1,34 @@
   // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyBN7k2TLkcXBh4fb925PkPf-CF2Mtmee_k",
-    authDomain: "airlie-beach-constructio-9e804.firebaseapp.com",
-    databaseURL: "https://airlie-beach-constructio-9e804.firebaseio.com",
-    projectId: "airlie-beach-constructio-9e804",
-    storageBucket: "airlie-beach-constructio-9e804.appspot.com",
-    messagingSenderId: "656162790825",
-    appId: "1:656162790825:web:88b9a08558ef48d7ac38b8",
-    measurementId: "G-XVLXKRJTH2"
-  };
+  // var firebaseConfig = {
+  //   apiKey: "AIzaSyBN7k2TLkcXBh4fb925PkPf-CF2Mtmee_k",
+  //   authDomain: "airlie-beach-constructio-9e804.firebaseapp.com",
+  //   databaseURL: "https://airlie-beach-constructio-9e804.firebaseio.com",
+  //   projectId: "airlie-beach-constructio-9e804",
+  //   storageBucket: "airlie-beach-constructio-9e804.appspot.com",
+  //   messagingSenderId: "656162790825",
+  //   appId: "1:656162790825:web:88b9a08558ef48d7ac38b8",
+  //   measurementId: "G-XVLXKRJTH2"
+  // };
 
-  // // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+  // // // Initialize Firebase
+  // firebase.initializeApp(firebaseConfig);
+  // firebase.analytics();
 
   
-  mFirestore = FirebaseFirestore.getInstance();
+  // mFirestore = FirebaseFirestore.getInstance();
 
-  let messagesReference = firebase.database().ref("messages");
+  // let messagesReference = firebase.database().ref("messages");
 let url = "hello"
 let myIndex = 0;
 
-admin.firestore().collection('messages').add({
-  to: 'someone@example.com',
-  message: {
-    subject: 'Hello from Firebase!',
-    text: 'This is the plaintext section of the email body.',
-    html: 'This is the <code>HTML</code> section of the email body.',
-  }
-}).then(() => console.log('Queued email for delivery!'));
+// admin.firestore().collection('messages').add({
+//   to: 'someone@example.com',
+//   message: {
+//     subject: 'Hello from Firebase!',
+//     text: 'This is the plaintext section of the email body.',
+//     html: 'This is the <code>HTML</code> section of the email body.',
+//   }
+// }).then(() => console.log('Queued email for delivery!'));
 
 class HTTP {
 
@@ -191,7 +191,7 @@ formValid(e){
 
   
       // save message
-      ui.saveMessageToFireBase(name, phone, email, content, to);
+      // ui.saveMessageToFireBase(name, phone, email, content, to);
 
 
       const successMessage = document.createElement("div");
@@ -269,20 +269,20 @@ formValid(e){
 
   }
 
-  saveMessageToFireBase(name, phone, email, content, to){
-    let newMessageRef = messagesReference.push();
-    newMessageRef.set({
-      to: to,
-      message: {
-        name: name,
-        content: content,
-        email: email,
-        phone: phone
+  // saveMessageToFireBase(name, phone, email, content, to){
+  //   let newMessageRef = messagesReference.push();
+  //   newMessageRef.set({
+  //     to: to,
+  //     message: {
+  //       name: name,
+  //       content: content,
+  //       email: email,
+  //       phone: phone
 
-      }
+  //     }
  
-    });
-  }
+  //   });
+  // }
 
   insertFocus(){
   
@@ -363,11 +363,15 @@ formValid(e){
 
 
 
+
     if(e.target.classList.contains("big-img") || e.target.classList.contains("small-img") ||e.target.classList.contains("small-img-port")){
 
       let displayImage = e.target.src;
+      let dataLocation = e.target.dataset.location
       emptyDisplay.alt = e.target.id;
+      emptyDisplay.dataset.location = dataLocation
       
+
 
       displayImage = displayImage.substring(0, displayImage.length - 8);
       console.log(displayImage);
@@ -400,21 +404,24 @@ formValid(e){
     let output ="";
 
     const numberOfImages = data.newData.length;
-
+    console.log(data.location)
     // let rand1 = Math.floor(Math.random() * numberOfImages)
     // let rand2 = Math.floor(Math.random() * numberOfImages)
     // let rand3 = Math.floor(Math.random() * numberOfImages)
     // let rand4 = Math.floor(Math.random() * numberOfImages)
     // console.log(rand2)
+    // <img class="small-img-port funnel" id="${i}" src="/images/${data.location}/${data.newData[i]}">
 
  
 
     for(let i = 0; i < numberOfImages; i++){
 
 
+      // yangaro-13/yangaro-13_6_-res.jpg
+
         output += `
       
-        <img class="small-img-port funnel" id="${i}" src="/images/${data.location}/${data.newData[i]}">
+        <img class="small-img-port funnel" id="${i}" data-location="${data.location}" src="https://res.cloudinary.com/doxnenpyp/image/upload/${data.location}/${data.newData[i]}">
         `  
 
     } 
@@ -435,10 +442,16 @@ formValid(e){
 
   previous(){
 
-    const allImages = document.querySelectorAll(".funnel");
+    // const allImages = document.querySelectorAll(".funnel");
     const currentImage = document.getElementById("bigOne");
 
     let imageLocation = currentImage.alt;
+
+    let dataLocation = currentImage.dataset.location
+
+    const allImages = document.querySelectorAll(`[data-location="${dataLocation}"]`);
+    console.log(allImages)
+
     console.log(imageLocation)
     let previousImage = allImages[imageLocation - 1].src;
 
@@ -461,10 +474,17 @@ formValid(e){
 
   next(){
 
-    const allImages = document.querySelectorAll(".funnel");
+    
     let currentImage = document.getElementById("bigOne");
 
     let imageLocation = currentImage.alt;
+    let dataLocation = currentImage.dataset.location
+
+    const allImages = document.querySelectorAll(`[data-location="${dataLocation}"]`);
+    console.log(allImages)
+
+
+    console.log(dataLocation)
     console.log(imageLocation)
     imageLocation = parseInt(imageLocation)
 
@@ -478,8 +498,6 @@ formValid(e){
 
 
     let altLoc = parseInt(currentImage.alt)
-    console.log(altLoc)
-    console.log(typeof altLoc)
     currentImage.alt =  altLoc + 1
     currentImage.src = nextImage;
 
@@ -659,3 +677,22 @@ function getInputVal(id){
 
 
 
+
+
+// Check if a new cache is available on page load.
+window.addEventListener('load', function(e) {
+
+  window.applicationCache.addEventListener('updateready', function(e) {
+    if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+      // Browser downloaded a new app cache.
+      // Swap it in and reload the page to get the new hotness.
+      window.applicationCache.swapCache();
+      if (confirm('A new version of this site is available. Load it?')) {
+        window.location.reload();
+      }
+    } else {
+      // Manifest didn't changed. Nothing new to server.
+    }
+  }, false);
+
+}, false);

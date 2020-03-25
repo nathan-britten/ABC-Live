@@ -1,14 +1,4 @@
-  // Your web app's Firebase configuration
-  // var firebaseConfig = {
-  //   apiKey: "AIzaSyBN7k2TLkcXBh4fb925PkPf-CF2Mtmee_k",
-  //   authDomain: "airlie-beach-constructio-9e804.firebaseapp.com",
-  //   databaseURL: "https://airlie-beach-constructio-9e804.firebaseio.com",
-  //   projectId: "airlie-beach-constructio-9e804",
-  //   storageBucket: "airlie-beach-constructio-9e804.appspot.com",
-  //   messagingSenderId: "656162790825",
-  //   appId: "1:656162790825:web:88b9a08558ef48d7ac38b8",
-  //   measurementId: "G-XVLXKRJTH2"
-  // };
+
 
   // // // Initialize Firebase
   // firebase.initializeApp(firebaseConfig);
